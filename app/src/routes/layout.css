@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--color-go-50: #eef7fa;
+	--color-go-100: #d5edf3;
+	--color-go-200: #a8d9e8;
+	--color-go-300: #6fbdd8;
+	--color-go-400: #3da0c4;
+	--color-go-500: #1a85ad;
+	--color-go-600: #007d9c;
+	--color-go-700: #006380;
+	--color-go-800: #004d64;
+	--color-go-900: #003a4d;
+	--color-go-950: #002532;
+}
