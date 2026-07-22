@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { Canvas, PencilBrush } from 'fabric';
 	type CanvasProps = {
 		triggerDelay?: number;
@@ -8,11 +7,15 @@
 	};
 	const { triggerDelay = 300, onPredict, onClear }: CanvasProps = $props();
 
-	let canvas: Canvas;
+	let canvas: Canvas | undefined;
+	let containerWidth = $state(0);
+	let canvasSize = $derived(Math.min(containerWidth, 400));
 
-	onMount(() => {
+	function initCanvas() {
 		canvas = new Canvas('mnist-canvas', {
-			isDrawingMode: true
+			isDrawingMode: true,
+			width: canvasSize,
+			height: canvasSize
 		});
 
 		canvas.backgroundColor = 'rgba(255, 255, 255, 255)';
@@ -22,9 +25,9 @@
 
 		if (clearEl) {
 			clearEl.onclick = function () {
-				canvas.clear();
-				canvas.backgroundColor = 'rgba(255, 255, 255, 255)';
-				canvas.renderAll();
+				canvas!.clear();
+				canvas!.backgroundColor = 'rgba(255, 255, 255, 255)';
+				canvas!.renderAll();
 				const scaledCanvas = document.getElementById('scaled-canvas') as HTMLCanvasElement;
 				if (scaledCanvas) {
 					const ctx = scaledCanvas.getContext('2d');
@@ -61,6 +64,12 @@
 			}
 			predict();
 		});
+	}
+
+	$effect(() => {
+		if (canvasSize > 0 && !canvas) {
+			initCanvas();
+		}
 	});
 
 	function cropImageFromCanvas(ctx: CanvasRenderingContext2D) {
@@ -173,15 +182,16 @@
 	}
 </script>
 
-<div class="flex flex-col items-center gap-2">
+<div class="flex flex-col items-center gap-2 w-full max-w-100">
 	<p class="text-xs font-semibold text-go-600 uppercase tracking-wider">Draw here</p>
-	<canvas
-		width={400}
-		height={400}
-		id="mnist-canvas"
-		class="rounded-xl border-2 border-go-200 shadow-inner cursor-crosshair"
-	></canvas>
-	<div class="flex items-center w-75">
+	<div bind:clientWidth={containerWidth} class="w-full">
+		<canvas
+			id="mnist-canvas"
+			class="rounded-xl border-2 border-go-200 shadow-inner cursor-crosshair w-full"
+			style="aspect-ratio: 1"
+		></canvas>
+	</div>
+	<div class="flex items-center w-full max-w-80">
 		<div class="flex-1 flex justify-center">
 			<button
 				id="clear-canvas"

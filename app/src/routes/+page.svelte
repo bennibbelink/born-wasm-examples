@@ -5,14 +5,16 @@
 <div class="min-h-dvh bg-linear-to-br from-go-50 to-go-100 px-4 py-12">
 	<div class="mx-auto max-w-3xl">
 		<div class="mb-12 text-center">
-			<h1 class="text-5xl font-bold tracking-tight text-go-700">Born WASM Examples</h1>
+			<h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-go-700">Born WASM Examples</h1>
 			<p class="mt-4 text-lg text-go-600">
 				Machine learning models written in Go and compiled to WebAssembly, running entirely in your
 				browser.
 			</p>
 		</div>
 
-		<div class="mb-12 rounded-2xl border border-go-100 bg-white p-8 shadow-lg shadow-go-200/50">
+		<div
+			class="mb-12 rounded-2xl border border-go-100 bg-white p-6 sm:p-8 shadow-lg shadow-go-200/50"
+		>
 			<h2 class="mb-4 text-2xl font-semibold text-go-700">What is Born?</h2>
 			<p class="leading-relaxed text-go-600">
 				<a
@@ -23,7 +25,7 @@
 			</p>
 		</div>
 
-		<div class="rounded-2xl border border-go-100 bg-white p-8 shadow-lg shadow-go-200/50">
+		<div class="rounded-2xl border border-go-100 bg-white p-6 sm:p-8 shadow-lg shadow-go-200/50">
 			<h2 class="mb-6 text-2xl font-semibold text-go-700">Examples</h2>
 			<div class="grid gap-6 sm:grid-cols-2">
 				<a

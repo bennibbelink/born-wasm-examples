@@ -18,7 +18,8 @@
 
 	$effect(() => {
 		const maxVal = Math.max(d3.max(data, (d) => d.value) ?? 0, 1);
-		const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+		const fontSize = Math.max(8, Math.min(11, containerWidth / 40));
+		const margin = { top: 20, right: 10, bottom: 30, left: 40 };
 		const w = containerWidth - margin.left - margin.right;
 		const h = 280 - margin.top - margin.bottom;
 
@@ -92,7 +93,7 @@
 						.attr('y', h)
 						.attr('text-anchor', 'middle')
 						.attr('fill', '#000')
-						.attr('font-size', '11px')
+						.attr('font-size', `${fontSize}px`)
 						.attr('font-weight', '600')
 						.attr('pointer-events', 'none')
 						.call((el) =>
@@ -107,6 +108,7 @@
 							.transition(t)
 							.attr('x', (d) => x(d.label)! + x.bandwidth() / 2)
 							.attr('y', (d) => y(d.value) + (h - y(d.value)) / 2 + 4)
+							.attr('font-size', `${fontSize}px`)
 							.text((d) => d.value.toFixed(2))
 					),
 				(exit) => exit.call((el) => el.remove())
@@ -132,5 +134,10 @@
 <style>
 	.bar-chart {
 		width: 100%;
+		overflow: hidden;
+	}
+	.bar-chart :global(svg) {
+		max-width: 100%;
+		display: block;
 	}
 </style>

@@ -31,7 +31,7 @@
 <div class="min-h-dvh bg-linear-to-br from-go-50 to-go-100 py-8 px-4">
 	<div class="max-w-4xl mx-auto">
 		<div class="text-center mb-8">
-			<h1 class="text-4xl font-bold text-go-700 tracking-tight">MNIST-CNN</h1>
+			<h1 class="text-3xl sm:text-4xl font-bold text-go-700 tracking-tight">MNIST-CNN</h1>
 			<div class="mt-2 flex justify-center">
 				<span
 					class="inline-flex items-center rounded-full bg-go-100 px-3 py-1 text-xs font-medium text-go-700 ring-1 ring-go-700"
