@@ -23,5 +23,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # Go assets
-static/*.wasm
-static/wasm_exec.js
+src/lib/assets/*.wasm
+src/lib/assets/wasm_exec.js

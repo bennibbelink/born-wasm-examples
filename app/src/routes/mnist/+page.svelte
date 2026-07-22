@@ -1,15 +1,17 @@
 <script lang="ts">
 	import MNISTBarChart from '$lib/MNISTBarChart.svelte';
-	import { mnistInit, mnistPredict } from '$lib/mnist';
+	import { mnistPredict } from '$lib/mnist';
+	import { WASM_URL } from '$lib/mnist';
 	import MNISTCanvas from '$lib/MNISTCanvas.svelte';
 	import { SOURCE_URLS } from '$lib/config';
 	import { onMount } from 'svelte';
+	import { wasmInit } from '$lib/wasm';
 
 	let resultTensor: number[] | undefined = $state(Array(10).fill(0));
 	let duration: number | undefined = $state();
 
 	onMount(async () => {
-		await mnistInit();
+		await wasmInit(WASM_URL);
 	});
 
 	function onPredict(inputs: number[]) {

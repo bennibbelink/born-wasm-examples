@@ -4,6 +4,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+	assetsInclude: ['**/*.wasm', 'src/lib/assets/wasm_exec.js'],
 	plugins: [
 		tailwindcss(),
 		sveltekit({

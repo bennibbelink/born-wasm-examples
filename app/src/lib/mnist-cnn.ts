@@ -1,28 +1,20 @@
-const WASM_URL = '/mnist-cnn.wasm';
-import { assertFunctionExists } from './utils';
+import { wasmInit, getWasmInstanceByUrl, assertFunctionExists } from './wasm';
+import WASM_URL from '$lib/assets/mnist-cnn.wasm?url';
 
-let wasm2: WebAssembly.Instance | null = null;
+export { WASM_URL };
 
 export const mnistCNNInit = async () => {
-	const go = new Go();
-	if (!('instantiateStreaming' in WebAssembly)) {
-		throw new Error('Streaming not supported');
-	}
-	const obj = await WebAssembly.instantiateStreaming(
-		fetch(WASM_URL),
-		go.importObject as WebAssembly.Imports
-	);
-	wasm2 = obj.instance;
-	go.run(wasm2);
+	await wasmInit(WASM_URL);
 };
 
 export const mnistCNNPredict = (
 	inputs: number[]
 ): { predictions: number[]; durationMs: number } => {
-	if (!wasm2) {
-		throw new Error('Go runtime not initialized. Call mnistCNNInit() first.');
+	const wasm = getWasmInstanceByUrl(WASM_URL);
+	if (!wasm) {
+		throw new Error('Go runtime not initialized. Call wasmInit() first.');
 	}
-	const { memory, getInputBufPtr, tinygoPredict, getOutputBufPtr, getDurationMs } = wasm2.exports;
+	const { memory, getInputBufPtr, tinygoPredict, getOutputBufPtr, getDurationMs } = wasm.exports;
 
 	const memExport = memory as WebAssembly.Memory;
 	const mem = new Float32Array(memExport.buffer);

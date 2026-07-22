@@ -1,38 +1,12 @@
-const WASM_URL = '/mnist.wasm';
-import { assertFunctionExists } from './utils';
+import { getWasmInstanceByUrl, assertFunctionExists } from './wasm';
+import WASM_URL from '$lib/assets/mnist.wasm?url';
 
-let wasm: WebAssembly.Instance | null = null;
-
-export const mnistInit = async () => {
-	const go = new Go();
-	if (!('instantiateStreaming' in WebAssembly)) {
-		throw new Error('Streaming not supported');
-	}
-	const obj = await WebAssembly.instantiateStreaming(
-		fetch(WASM_URL),
-		go.importObject as WebAssembly.Imports
-	);
-	wasm = obj.instance;
-	go.run(wasm);
-};
-
-export const mnistParamCount = () => {
-	if (!wasm) {
-		throw new Error('Go runtime not initialized. Call mnistInit() first.');
-	}
-	const { memory, getMetricsBufPtr } = wasm.exports;
-
-	const memExport = memory as WebAssembly.Memory;
-	const metricsMem = new Int32Array(memExport.buffer);
-	assertFunctionExists(getMetricsBufPtr);
-	const metricsPtr = getMetricsBufPtr() as number;
-	const paramCount = metricsMem[(metricsPtr >>> 2) + 1];
-	return paramCount;
-};
+export { WASM_URL };
 
 export const mnistPredict = (inputs: number[]): { predictions: number[]; durationMs: number } => {
+	const wasm = getWasmInstanceByUrl(WASM_URL);
 	if (!wasm) {
-		throw new Error('Go runtime not initialized. Call mnistInit() first.');
+		throw new Error('Go runtime not initialized. Call wasmInit() first.');
 	}
 	const { memory, getInputBufPtr, tinygoPredict, getOutputBufPtr, getDurationMs } = wasm.exports;
 
