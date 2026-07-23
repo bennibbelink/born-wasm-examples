@@ -1,6 +1,6 @@
-Examples of born-ml/born in the browser
+# Born WASM Examples
 
-This repository demonstrates how to run machine learning models from the [born-ml/born](https://github.com/born-ml/born) framework in the browser using Go's WebAssembly (WASM) runtime.
+This repository demonstrates how to run machine learning models from the [born-ml/born](https://github.com/born-ml/born) framework in the browser using Go's WebAssembly (WASM) runtime.  Access the demo [here](https://bennibbelink.github.io/born-wasm-examples).
 
 ## What It Does
 
@@ -31,8 +31,7 @@ born-wasm-examples/
 
 **How it works:**
 1. Go source code with born models is compiled to WASM
-2. Output: `.wasm` files that can run in any modern browser
-3. Static files served alongside the Svelte app
+2. Static `.wasm` files served alongside the Svelte app
 
 ## Setup & Usage
 
@@ -65,13 +64,13 @@ make app
 
 ```
 born-wasm-examples/
-├── app/                   # SvelteKit frontend
+├── app/                    # SvelteKit frontend
 │   ├── src/
-│   │   ├── routes/        # SvelteKit routes
-│   │   └── lib/           # Shared utilities
-│   ├── static/            # Compiled WASM files
-│   │   ├── mnist.wasm
-│   │   └── mnist-cnn.wasm
+│   │   ├── routes/         # SvelteKit routes
+│   │   └── lib/
+│   │       └── assets/     # Compiled WASM files
+│   │           ├── mnist.wasm
+│   │           └── mnist-cnn.wasm
 │   └── package.json
 ├── mnist/                  # MNIST model (Go)
 ├── mnist-cnn/              # MNIST-CNN model (Go)
