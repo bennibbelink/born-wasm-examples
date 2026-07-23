@@ -1,5 +1,5 @@
-github.com/bennibbelink/born v0.0.0-20260721004723-61c84b3da81a h1:6cm+fErJit69Kdqe3jrPLs84Dfs0wKMTx/QUIYEk4ZI=
-github.com/bennibbelink/born v0.0.0-20260721004723-61c84b3da81a/go.mod h1:ZzL+IwspiazjdFfDIrg0QRzCHuiFzK8UAHrIMrbKj/s=
+github.com/born-ml/born v0.9.18 h1:pucJnEYP8RpByMy7tJpOpGWDFbhIutLLs4Fjb+tYO0A=
+github.com/born-ml/born v0.9.18/go.mod h1:ZzL+IwspiazjdFfDIrg0QRzCHuiFzK8UAHrIMrbKj/s=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/go-webgpu/goffi v0.5.6 h1:jAN4ciR63DcpU/qdX4A3wbNvcpZ6AdFK+H7OB/1+9Lc=
